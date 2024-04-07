@@ -9,6 +9,10 @@ default_vpc_id = "vpc-0e510849fd95dcedf"
 default_route_table_id = "rtb-07434411c4ca3252b"
 default_vpc_cidr = "172.31.0.0/16"
 
+route53_zone_id = "Z017218723D63YD2W9JSZ"
+kms = "arn:aws:kms:us-east-1:072976934238:key/079f5721-2a3d-4e97-b0da-900b8fde1369"
+certificate_arn = "arn:aws:acm:us-east-1:072976934238:certificate/ab3e1f5e-0b58-45f5-b14e-37aec2c793c2"
+
 
 vpc = {
   main = {
@@ -22,4 +26,13 @@ vpc = {
   }
 }
 
+rds = {
+  main = {
+    rds_allocated_storage = 20
+    rds_engine = "mysql"
+    rds_engine_version = "5.7.44"
+    rds_instance_class = "db.t3.micro"
+    parameter_group_family = "mysql5.7"
+  }
+}
 

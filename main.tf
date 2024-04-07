@@ -17,3 +17,23 @@ module "vpc" {
   default_vpc_cidr = var.default_vpc_cidr
 }
 
+module "rds" {
+  source = "git::https://github.com/pvattam/tf-module-rds.git"
+
+  for_each = var.rds
+  rds_allocated_storage = each.value["rds_allocated_storage"]
+  rds_engine = each.value["rds_engine"]
+  rds_engine_version = each.value["rds_engine_version"]
+  rds_instance_class = each.value["rds_instance_class"]
+  parameter_group_family = each.value["db_subnet"]
+
+  tags = var.tags
+  env = var.env
+  kms = var.kms
+
+  subnets = lookup(lookup(module.vpc, "main" , null ), "db_subnet", null)
+  vpc_id = lookup(lookup(module.vpc, "main" , null ), "vpc_id", null)
+  sg_cidrs = lookup(lookup(var.vpc, "main" , null ), "db_subnet", null)
+
+
+}
