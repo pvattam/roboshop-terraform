@@ -18,7 +18,7 @@ pipeline {
      stage('Parameter Store Update') {
         steps {
            dir('PS') {
-              git branch: 'main', url: 'https://github.com/pvattam/parameter-store.git'
+              git branch: 'main', url: 'https://github.com/pvattam/aws-parameter-store.git'
               sh 'terraform init'
               sh 'terraform apply -auto-approve'
             }

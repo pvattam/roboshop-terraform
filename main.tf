@@ -34,6 +34,4 @@ module "rds" {
   subnets = lookup(lookup(module.vpc, "main" , null ), "db_subnet", null)
   vpc_id = lookup(lookup(module.vpc, "main" , null ), "vpc_id", null)
   sg_cidrs = lookup(lookup(var.vpc, "main" , null ), "db_subnet", null)
-
-
 }
