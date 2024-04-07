@@ -25,7 +25,7 @@ module "rds" {
   rds_engine = each.value["rds_engine"]
   rds_engine_version = each.value["rds_engine_version"]
   rds_instance_class = each.value["rds_instance_class"]
-  parameter_group_family = each.value["db_subnet"]
+  parameter_group_family = each.value["parameter_group_family"]
 
   tags = var.tags
   env = var.env
