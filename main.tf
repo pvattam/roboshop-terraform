@@ -17,22 +17,41 @@ module "vpc" {
   default_vpc_cidr = var.default_vpc_cidr
 }
 
-module "rds" {
-  source = "git::https://github.com/pvattam/tf-module-rds.git"
+#module "rds" {
+#  source = "git::https://github.com/pvattam/tf-module-rds.git"
+#
+#  for_each = var.rds
+#  rds_allocated_storage = each.value["rds_allocated_storage"]
+#  rds_engine = each.value["rds_engine"]
+#  rds_engine_version = each.value["rds_engine_version"]
+#  rds_instance_class = each.value["rds_instance_class"]
+#  parameter_group_family = each.value["parameter_group_family"]
+#
+#  tags = var.tags
+#  env = var.env
+#  kms = var.kms
+#
+#  subnets = lookup(lookup(module.vpc, "main" , null ), "db_subnet", null)
+#  vpc_id = lookup(lookup(module.vpc, "main" , null ), "vpc_id", null)
+#  sg_cidrs = lookup(lookup(var.vpc, "main" , null ), "db_subnet", null)
+#}
 
-  for_each = var.rds
-  rds_allocated_storage = each.value["rds_allocated_storage"]
-  rds_engine = each.value["rds_engine"]
-  rds_engine_version = each.value["rds_engine_version"]
-  rds_instance_class = each.value["rds_instance_class"]
+module "rds" {
+  source = "git::https://github.com/raghudevopsb76/tf-module-rds.git"
+
+  for_each               = var.rds
+  allocated_storage      = each.value["allocated_storage"]
+  engine                 = each.value["engine"]
+  engine_version         = each.value["engine_version"]
+  instance_class         = each.value["instance_class"]
   parameter_group_family = each.value["parameter_group_family"]
 
+  env  = var.env
   tags = var.tags
-  env = var.env
-  kms = var.kms
+  kms  = var.kms
 
-  subnets = lookup(lookup(module.vpc, "main" , null ), "db_subnet", null)
-  vpc_id = lookup(lookup(module.vpc, "main" , null ), "vpc_id", null)
-  sg_cidrs = lookup(lookup(var.vpc, "main" , null ), "db_subnet", null)
+  subnets  = lookup(lookup(module.vpc, "main", null), "db_subnets", null)
+  vpc_id   = lookup(lookup(module.vpc, "main", null), "vpc_id", null)
+  sg_cidrs = lookup(lookup(var.vpc, "main", null), "app_subnet", null)
+
 }
-
