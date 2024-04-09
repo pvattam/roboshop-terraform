@@ -41,8 +41,9 @@ docdb = {
 #    allocated_storage = 20
     engine = "docdb"
     engine_version = "4.0.0"
-#    instance_class = "db.t3.micro"
+    instance_class = "db.t3.medium"
     parameter_group_family = "docdb4.0"
+    instance_count = 1
   }
 }
 

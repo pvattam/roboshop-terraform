@@ -60,11 +60,11 @@ module "docdb" {
   source = "git::https://github.com/raghudevopsb76/tf-module-docdb.git"
 
   for_each               = var.docdb
-#  allocated_storage      = each.value["allocated_storage"]
   engine                 = each.value["engine"]
   engine_version         = each.value["engine_version"]
-#  instance_class         = each.value["instance_class"]
+  instance_class         = each.value["instance_class"]
   parameter_group_family = each.value["parameter_group_family"]
+  instance_count         = each.value["instance_count"]
 
   env  = var.env
   tags = var.tags
