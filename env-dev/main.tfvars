@@ -38,7 +38,6 @@ rds = {
 
 docdb = {
   main = {
-#    allocated_storage = 20
     engine = "docdb"
     engine_version = "4.0.0"
     instance_class = "db.t3.medium"
@@ -46,4 +45,16 @@ docdb = {
     instance_count = 1
   }
 }
+
+elasticache = {
+  main = {
+    engine = "redis"
+    engine_version = "6.2"
+    node_type = "cache.t3.micro"
+    parameter_group_family = "redis6.x"
+    num_cache_nodes = 1
+  }
+}
+
+
 
