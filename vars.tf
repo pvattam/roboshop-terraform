@@ -11,6 +11,9 @@ variable "certificate_arn" {}
 variable "rds" {}
 variable "docdb" {}
 variable "elasticache" {}
+variable "rabbitmq" {}
+variable "bastion_cidrs" {}
+variable "prometheus_cidrs" {}
 
 
 

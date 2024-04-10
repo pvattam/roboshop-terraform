@@ -13,6 +13,8 @@ route53_zone_id = "Z017218723D63YD2W9JSZ"
 kms = "arn:aws:kms:us-east-1:072976934238:key/079f5721-2a3d-4e97-b0da-900b8fde1369"
 certificate_arn = "arn:aws:acm:us-east-1:072976934238:certificate/ab3e1f5e-0b58-45f5-b14e-37aec2c793c2"
 
+bastion_cidrs = ["172.31.45.197/32"]
+prometheus_cidrs = ["172.31.36.179/32"]
 
 vpc = {
   main = {
@@ -56,5 +58,10 @@ elasticache = {
   }
 }
 
+rabbitmq = {
+  main = {
+    instance_type = "t3.small"
+  }
+}
 
 
