@@ -97,19 +97,10 @@ module "rabbitmq" {
 
 }
 
-
-
-
-#variable "app_port" {}
-
-
-
-#variable "prometheus_cidrs" {}
-
 module "app" {
   source = "git::https://github.com/pvattam/tf-module-app.git"
 
-  for_each           = var.rabbitmq
+  for_each           = var.app
   component          = each.key
   instance_type      = each.value["instance_type"]
   instance_count     = each.value["instance_count"]
