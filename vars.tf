@@ -14,6 +14,7 @@ variable "elasticache" {}
 variable "rabbitmq" {}
 variable "bastion_cidrs" {}
 variable "prometheus_cidrs" {}
+variable "app" {}
 
 
 

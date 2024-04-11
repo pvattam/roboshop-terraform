@@ -97,3 +97,34 @@ module "rabbitmq" {
 
 }
 
+
+
+
+#variable "app_port" {}
+
+
+
+#variable "prometheus_cidrs" {}
+
+module "app" {
+  source = "git::https://github.com/pvattam/tf-module-app.git"
+
+  for_each           = var.rabbitmq
+  component          = each.key
+  instance_type      = each.value["instance_type"]
+  instance_count     = each.value["instance_count"]
+  app_port           = each.value["app_port"]
+
+
+  env  = var.env
+  tags = var.tags
+  kms  = var.kms
+  bastion_cidrs = var.bastion_cidrs
+  prometheus_cidrs = var.prometheus_cidrs
+  route53_zone_id = var.route53_zone_id
+
+  subnets  = lookup(lookup(module.vpc, "main", null), "db_subnets", null)
+  vpc_id   = lookup(lookup(module.vpc, "main", null), "vpc_id", null)
+  sg_cidrs = lookup(lookup(var.vpc, "main", null), "app_subnet", null)
+
+}
