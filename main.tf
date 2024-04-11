@@ -18,7 +18,7 @@ module "vpc" {
 }
 
 module "rds" {
-  source = "git::https://github.com/raghudevopsb76/tf-module-rds.git"
+  source = "git::https://github.com/pvattam/tf-module-rds.git"
 
   for_each               = var.rds
   allocated_storage      = each.value["allocated_storage"]
@@ -38,7 +38,7 @@ module "rds" {
 }
 
 module "docdb" {
-  source = "git::https://github.com/raghudevopsb76/tf-module-docdb.git"
+  source = "git::https://github.com/pvattam/tf-module-docdb.git"
 
   for_each               = var.docdb
   engine                 = each.value["engine"]
@@ -58,7 +58,7 @@ module "docdb" {
 }
 
 module "elasticache" {
-  source = "git::https://github.com/raghudevopsb76/tf-module-elasticache.git"
+  source = "git::https://github.com/pvattam/tf-module-elasticache.git"
 
   for_each               = var.elasticache
   engine                 = each.value["engine"]
@@ -79,7 +79,7 @@ module "elasticache" {
 
 
 module "rabbitmq" {
-  source = "git::https://github.com/raghudevopsb76/tf-module-rabbitmq.git"
+  source = "git::https://github.com/pvattam/tf-module-rabbitmq.git"
 
   for_each               = var.rabbitmq
   instance_type          = each.value["instance_type"]
