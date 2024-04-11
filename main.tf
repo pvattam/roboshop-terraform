@@ -113,8 +113,8 @@ module "app" {
   bastion_cidrs = var.bastion_cidrs
   prometheus_cidrs = var.prometheus_cidrs
 
-  subnets  = lookup(lookup(module.vpc, "main", null), "db_subnets", null)
+  subnets  = lookup(lookup(module.vpc, "main", null), each.value["app_subnet_name"], null)
   vpc_id   = lookup(lookup(module.vpc, "main", null), "vpc_id", null)
-  sg_cidrs = lookup(lookup(var.vpc, "main", null), "app_subnet", null)
+  sg_cidrs = lookup(lookup(var.vpc, "main", null), each.value["lb_subnet_name"], null)
 
 }
