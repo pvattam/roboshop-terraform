@@ -72,6 +72,8 @@ app = {
     app_port = 8080
     app_subnet_name = "app_subnets"
     lb_subnet_name  = "app_subnet"
+    alb_name  = "private"
+    priority  = 1
   }
   frontend = {
     instance_type = "t3.small"
@@ -79,6 +81,8 @@ app = {
     app_port = 80
     app_subnet_name = "web_subnets"
     lb_subnet_name  = "public_subnet"
+    alb_name  = "public"
+    priority  = 1
   }
   cart = {
     instance_type = "t3.small"
@@ -86,6 +90,9 @@ app = {
     app_port = 8080
     app_subnet_name = "app_subnets"
     lb_subnet_name  = "app_subnet"
+    alb_name  = "private"
+    priority  = 2
+
   }
   user = {
     instance_type = "t3.small"
@@ -93,6 +100,9 @@ app = {
     app_port = 8080
     app_subnet_name = "app_subnets"
     lb_subnet_name  = "app_subnet"
+    alb_name  = "private"
+    priority  = 3
+
   }
   shipping = {
     instance_type = "t3.small"
@@ -100,6 +110,9 @@ app = {
     app_port = 8080
     app_subnet_name = "app_subnets"
     lb_subnet_name  = "app_subnet"
+    alb_name  = "private"
+    priority  = 4
+
   }
   payment = {
     instance_type = "t3.small"
@@ -107,6 +120,9 @@ app = {
     app_port = 8080
     app_subnet_name = "app_subnets"
     lb_subnet_name  = "app_subnet"
+    alb_name  = "private"
+    priority  = 5
+
   }
   dispatch = {
     instance_type = "t3.small"
@@ -114,32 +130,25 @@ app = {
     app_port = 8080
     app_subnet_name = "app_subnets"
     lb_subnet_name  = "app_subnet"
+    alb_name  = "private"
+    priority  = 6
+
   }
 }
 
 alb ={
   public = {
-    enable_https = true
     internal = false
     certificate_arn = "arn:aws:acm:us-east-1:072976934238:certificate/ab3e1f5e-0b58-45f5-b14e-37aec2c793c2"
     sg_cidrs = "internet"
     subnet_name = "public_subnets"
-    ingress_ports = {
-      http = { port = 80 }
-      https = { port = 443 }
-    }
   }
 
   private = {
-    enable_https = false
     internal = true
     certificate_arn = "arn:aws:acm:us-east-1:072976934238:certificate/ab3e1f5e-0b58-45f5-b14e-37aec2c793c2"
     sg_cidrs = "app_subnet"
     subnet_name = "public_subnets"
-    ingress_ports = {
-      http = { port = 80 }
-    }
   }
-
 }
 
