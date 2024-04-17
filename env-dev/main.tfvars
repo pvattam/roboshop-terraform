@@ -134,7 +134,7 @@ alb ={
     enable_https = false
     internal = true
     certificate_arn = "arn:aws:acm:us-east-1:072976934238:certificate/ab3e1f5e-0b58-45f5-b14e-37aec2c793c2"
-    sg_cidrs = "app_subnets"
+    sg_cidrs = "app_subnet"
     subnet_name = "public_subnet"
     ingress_ports = {
       http = { port = 80 }
