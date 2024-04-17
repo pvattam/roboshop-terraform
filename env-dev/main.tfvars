@@ -21,10 +21,11 @@ vpc = {
     vpc_cidr_block = "10.11.0.0/16"
 
     public_subnet = ["10.11.0.0/24","10.11.1.0/24"]
-    web_subnet = ["10.11.2.0/24","10.11.3.0/24"]
-    app_subnet = ["10.11.4.0/24","10.11.5.0/24"]
-    db_subnet = ["10.11.6.0/24","10.11.7.0/24"]
-    azs = ["us-east-1a", "us-east-1b"]
+    web_subnet    = ["10.11.2.0/24","10.11.3.0/24"]
+    app_subnet    = ["10.11.4.0/24","10.11.5.0/24"]
+    db_subnet     = ["10.11.6.0/24","10.11.7.0/24"]
+    azs           = ["us-east-1a", "us-east-1b"]
+    internet      = ["0.0.0.0/0"]
   }
 }
 
@@ -114,5 +115,31 @@ app = {
     app_subnet_name = "app_subnets"
     lb_subnet_name  = "app_subnet"
   }
+}
+
+alb ={
+  public = {
+    enable_https = true
+    internal = false
+    certificate_arn = "arn:aws:acm:us-east-1:072976934238:certificate/ab3e1f5e-0b58-45f5-b14e-37aec2c793c2"
+    sg_cidrs = "internet"
+    subnets = "public_subnet"
+    ingress_ports = {
+      http = { port = 80 }
+      https = { port = 443 }
+    }
+  }
+
+  private = {
+    enable_https = false
+    internal = true
+    certificate_arn = "arn:aws:acm:us-east-1:072976934238:certificate/ab3e1f5e-0b58-45f5-b14e-37aec2c793c2"
+    sg_cidrs = "app_subnets"
+    subnets = "public_subnet"
+    ingress_ports = {
+      http = { port = 80 }
+    }
+  }
+
 }
 
