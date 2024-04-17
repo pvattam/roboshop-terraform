@@ -124,7 +124,7 @@ module "alb" {
 
   for_each = var.alb
   enable_https = each.value["enable_https"]
-  ingress_ports = each.value["ingress"]
+  ingress_ports = each.value["ingress_ports"]
   certificate_arn = each.value["certificate_arn"]
   internal = each.value["internal"]
 

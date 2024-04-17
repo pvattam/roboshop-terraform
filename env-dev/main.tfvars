@@ -123,7 +123,7 @@ alb ={
     internal = false
     certificate_arn = "arn:aws:acm:us-east-1:072976934238:certificate/ab3e1f5e-0b58-45f5-b14e-37aec2c793c2"
     sg_cidrs = "internet"
-    subnets = "public_subnet"
+    subnet_name = "public_subnet"
     ingress_ports = {
       http = { port = 80 }
       https = { port = 443 }
@@ -135,7 +135,7 @@ alb ={
     internal = true
     certificate_arn = "arn:aws:acm:us-east-1:072976934238:certificate/ab3e1f5e-0b58-45f5-b14e-37aec2c793c2"
     sg_cidrs = "app_subnets"
-    subnets = "public_subnet"
+    subnet_name = "public_subnet"
     ingress_ports = {
       http = { port = 80 }
     }
