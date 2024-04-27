@@ -129,6 +129,7 @@ module "alb" {
   for_each = var.alb
   certificate_arn = each.value["certificate_arn"]
   internal = each.value["internal"]
+  subnets = each.value["subnet_name"]
 
   type = each.key
 
@@ -138,6 +139,6 @@ module "alb" {
 
   vpc_id = lookup(lookup(module.vpc, "main", null), "vpc_id", null)
   sg_cidrs = lookup(lookup(var.vpc, "main", null), each.value["sg_cidrs"], null)
-  subnets = lookup(lookup(module.vpc, "main", null), each.value["subnet_name"], null)
+
 
 }
