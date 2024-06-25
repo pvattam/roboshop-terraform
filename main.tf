@@ -100,9 +100,9 @@ module "vpc" {
 module "eks" {
   source = "git::https://github.com/pvattam/tf-module-eks.git"
 
-  for_each               = var.eks
-  instance_type          = each.value["instance_type"]
-
+  for_each   = var.eks
+  node_count = each.value["node_count"]
+  instance_types = each.value["instance_types"]
 
   env  = var.env
   tags = var.tags

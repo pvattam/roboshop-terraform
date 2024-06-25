@@ -151,5 +151,10 @@ alb ={
   }
 }
 
-eks = {}
+eks = {
+  main = {
+    node_count = 1
+    instance_types = ["t3.large"]
+  }
+}
 
